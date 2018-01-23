@@ -3,6 +3,7 @@ import Ember from 'ember';
 export default Ember.Service.extend({
 
   store  : Ember.inject.service(),
+  intl   : Ember.inject.service(), 
 
   // Actual user.
   user: {},
@@ -22,7 +23,11 @@ export default Ember.Service.extend({
       // Set language according the user.
       var intl = this.get('intl');
       if (intl) {
-        intl.setLocale(this.get('user.language'));
+        // Set language according the user.                                                                                      
+        // Set EN as fallback language.                                                                                          
+        let userLanguage     = this.get('user.language');                                                                        
+        let fallbackLanguage = 'en';                                                                                             
+        this.get('intl').setLocale([ userLanguage, fallbackLanguage]);         
       }
     });
 
