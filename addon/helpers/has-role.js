@@ -16,7 +16,7 @@ export default Helper.extend({
     }
     // Prepare the list of role names.
     var roleNames = [];
-    $.each(roles, function (key, value) {
+    roles.forEach(function (value, index) {
       roleNames.push(value);
     });
     // Test passed params.
