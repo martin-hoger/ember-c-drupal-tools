@@ -1,0 +1,25 @@
+{{#c-form-field-select
+  model=model
+  label=label
+  placeholder=placeholder
+  field=field
+  allowClear=true
+  onSelect=onSelect
+  options=(sort-categories-by-structure options)
+
+  as |category|
+}}
+
+  {{category.fullName}}
+  
+  {{!-- {{#if (eq category.depth 0)}}
+    <strong>{{category.name}}</strong>
+  {{else}}
+    &nbsp; &raquo; {{category.name}}
+  {{/if}} --}}
+
+  {{#if category.distinctObjectsCount}}
+    ({{category.distinctObjectsCount}})
+  {{/if}}
+
+{{/c-form-field-select}}
