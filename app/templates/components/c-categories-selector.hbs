@@ -5,9 +5,10 @@
   field=field
   allowClear=true
   onSelect=onSelect
-  options=(sort-categories-by-structure options)
-
-  as |category|
+  searchField=searchField
+  multiple=multiple
+  disabled=disabled
+  options=(sort-categories-by-structure options) as |category|
 }}
 
   {{#if (eq category.depth 0)}}
