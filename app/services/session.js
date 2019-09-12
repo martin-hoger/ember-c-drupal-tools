@@ -5,7 +5,7 @@ import { computed } from '@ember/object';
 export default Service.extend({
 
   store  : inject(),
-  intl   : inject(), 
+  intl   : inject(),
 
   // Actual user.
   user: null,
@@ -29,15 +29,40 @@ export default Service.extend({
       // Set language according the user.
       var intl = this.get('intl');
       if (intl) {
-        // Set language according the user.                                                                                      
-        // Set EN as fallback language.                                                                                          
-        let userLanguage     = this.get('user.language');                                                                        
-        let fallbackLanguage = 'en';                                                                                             
-        this.get('intl').setLocale([ userLanguage, fallbackLanguage]);         
+        // Set language according the user.
+        // Set EN as fallback language.
+        let userLanguage     = this.get('user.language');
+        let fallbackLanguage = 'en';
+        this.get('intl').setLocale([ userLanguage, fallbackLanguage]);
       }
     });
 
     this.set('promise', promise);
   },
+
+  hasRole(params) {
+    var hasRole = false;
+    var roles   = this.get('user.roles');
+    var userId  = Number(this.get('user.id'));
+    // For super-admin always return true.
+    if (userId === 1) {
+      return true;
+    }
+    // Prepare the list of role names.
+    var roleNames = [];
+    for (var roleKey in roles) {
+      roleNames.push(roles[roleKey]);
+    }
+    // Test passed params.
+    // If role is in the list, finish.
+    params.forEach(function (roleName) {
+      if (roleNames.indexOf(roleName) > 0) {
+        hasRole = true;
+        return false;
+      }
+    });
+
+   return hasRole;
+  }
 
 });
