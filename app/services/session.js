@@ -40,6 +40,10 @@ export default Service.extend({
     this.set('promise', promise);
   },
 
+  // Usage in template:
+  // {{if (has-role "admin-projects") "" "disabled"}}
+  // Usage in .js:
+  // if (this.session.hasRole(['admin-projects'])) { ...
   hasRole(params) {
     var hasRole = false;
     var roles   = this.get('user.roles');
