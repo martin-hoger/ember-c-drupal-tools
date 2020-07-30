@@ -24,7 +24,10 @@ export default Service.extend({
   init() {
     this._super(...arguments);
     // Load the actual user.
-    var promise = this.get('store').queryRecord('user', {'actual': 1}).then((user) => {
+    var promise = this.get('store').queryRecord('user', {
+        'actual'      : 1,
+        'windows-url' : window.location.href
+    }).then((user) => {
       this.set('user', user);
       // Set language according the user.
       var intl = this.get('intl');
