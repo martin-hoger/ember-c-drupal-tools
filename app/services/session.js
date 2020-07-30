@@ -25,8 +25,8 @@ export default Service.extend({
     this._super(...arguments);
     // Load the actual user.
     var promise = this.get('store').queryRecord('user', {
-        'actual'      : 1,
-        'windows-url' : window.location.href
+        'actual'     : 1,
+        'window-url' : window.location.href
     }).then((user) => {
       this.set('user', user);
       // Set language according the user.
